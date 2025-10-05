@@ -4,9 +4,9 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  context: { params: { nameEnglish: string } } // ✅ Promiseではなく直接オブジェクト
+  { params }: { params: { nameEnglish: string } } // ✅ Promiseなし・分割代入形式
 ) {
-  const { nameEnglish } = context.params; // ✅ await不要
+  const { nameEnglish } = params;
 
   try {
     const item = await prisma.item.findUnique({
