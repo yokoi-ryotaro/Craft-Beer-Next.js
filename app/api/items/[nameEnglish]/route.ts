@@ -6,9 +6,10 @@ export async function GET(
   req: Request,
   { params }: { params: { nameEnglish: string } }
 ) {
+  const { nameEnglish } = params;
   try {
     const item = await prisma.item.findUnique({
-      where: { nameEnglish: params.nameEnglish },
+      where: { nameEnglish },
       include: { country: true },
     });
 
