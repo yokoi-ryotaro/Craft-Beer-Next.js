@@ -1,12 +1,12 @@
 // app/api/items/[nameEnglish]/route.ts
-import { NextResponse, NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { nameEnglish: string } } // ✅ Promiseなし・分割代入形式
+  context: { params: Promise<{ nameEnglish: string }> } // ✅ Promise を残す
 ) {
-  const { nameEnglish } = params;
+  const { nameEnglish } = await context.params; // ✅ await して値を取得
 
   try {
     const item = await prisma.item.findUnique({
