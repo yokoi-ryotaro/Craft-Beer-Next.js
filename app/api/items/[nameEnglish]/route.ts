@@ -1,12 +1,13 @@
 // app/api/items/[nameEnglish]/route.ts
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(
-  req: Request,
-  { params }: { params: { nameEnglish: string } }
+  request: NextRequest,
+  context: { params: { nameEnglish: string } } // ✅ Promiseではなく直接オブジェクト
 ) {
-  const { nameEnglish } = params;
+  const { nameEnglish } = context.params; // ✅ await不要
+
   try {
     const item = await prisma.item.findUnique({
       where: { nameEnglish },
@@ -14,14 +15,13 @@ export async function GET(
     });
 
     if (!item) {
-      return NextResponse.json({ error: "Not Found" }, { status: 404 });
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
     }
 
-    const priceWithTax = Math.floor((item.price ?? 0) * 1.1);
-
+    const priceWithTax = Math.round((item.price ?? 0) * 1.1);
     return NextResponse.json({ item, priceWithTax });
   } catch (error) {
     console.error("Error fetching item:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch item" }, { status: 500 });
   }
 }
