@@ -1,0 +1,189 @@
+@charset "UTF-8";
+
+.mainsection{
+  margin: 0 auto;
+	padding: 50px 100px 0 100px;
+	max-width: 1200px;
+	font-size: 1.2rem;
+}
+
+.h2 {
+	margin: 30px 0 15px 0;
+}
+
+.orderEmpty {
+	font-weight: bold;
+}
+
+.orderEmptyMessage {
+	font-size: 1.2rem;
+}
+
+.shopping {
+	margin:10px 0 50px 0;
+}
+
+.button{
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	color: #c7a816;
+	background-color: rgba(168, 169, 167, 0.2);
+	font-size: 1.1rem;
+	font-weight: bold;
+	border-radius: 8px;
+	padding: 10px 15px;
+	transition: opacity 0.1s ease-in-out;
+}
+
+.button:hover{
+	opacity: 0.6;
+}
+
+.orders {
+	margin-bottom: 10px;
+}
+
+.orders:last-child {
+	margin-bottom: 30px;
+}
+
+.orderHeader {
+	background-color: #f0f2f2;
+	border-color: #d5d9d9;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 8px 8px 0 0;
+}
+
+.orderHeader .headerInner {
+	padding: 10px 20px;
+}
+
+.headerInner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+}
+
+.headerLeft .headerItem {
+	margin-right: 150px;
+}
+
+.headerLeft .headerItem:last-child {
+	margin-right: 0;
+}
+
+.headerRow {
+	text-align: left;
+}
+
+.headerList {
+	margin-right: 30px;
+}
+
+.headerList .orderDetails {
+	color: rgb(33, 98, 161);
+}
+
+.headerList .orderDetails:hover {
+	border-bottom: 2px solid
+}
+
+.sizeMini {
+	font-size: 1rem;
+}
+
+.orderFooter {
+	border-color: #d5d9d9;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 0 0 8px 8px ;
+}
+
+.orderFooter .footerInner {
+	display: flex;
+	padding: 15px 30px;
+}
+
+.footerInner {
+  justify-content: space-between;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.orderItem {
+	width: 60%;
+}
+
+.itemInner li {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.itemInner li:last-child {
+	margin-bottom: 0;
+}
+
+.itemInner .img {
+	width: auto;
+}
+
+.itemInner .name {
+	width: 70%;
+	padding: 0 20px 0 20px;
+}
+
+.itemInner .quantity {
+	width: auto;
+}
+
+.itemInner .itemName:hover {
+	border-bottom: 2px solid
+}
+
+.orderButton {
+	width: 20%;
+}
+
+.orderButton .aButton {
+	display: inline-block;
+	background-color: #ffce12;
+	border-radius: 30px;
+	padding: 5px 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+.orderButton .aButton:hover {
+	background-color: #f8bd19;
+}
+
+.changePass:hover {
+	border-bottom: 2px solid
+}
+
+.logoutButton {
+	background-color: #e74c3c; 
+	color: white;
+	margin-top: 20px;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+	background-color: #c0392b; 
+}

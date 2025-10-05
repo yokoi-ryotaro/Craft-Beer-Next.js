@@ -1,0 +1,90 @@
+@charset "UTF-8";
+
+#maincontent {
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+#mainsection {
+  margin: 0 auto;
+  padding: 50px 100px 0 100px;
+  max-width: 1200px;
+  font-size: 1.2rem;
+}
+
+.successMessage {
+  color: #2ecc71;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+.formRow label {
+  width: 200px;
+  text-align: left;
+  font-weight: bold;
+  color: #333;
+  align-items: center;
+}
+
+.form {
+  flex: 0.7;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.error {
+  display: flex;
+  justify-content: space-around;
+}
+
+.errorMessage {
+  color: #e74c3c;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.loginButton {
+  width: 180px;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: #218838;
+}
+
+.signup {
+  display: inline-block;
+  margin-top: 1rem;
+  text-align: center;
+  width: 100%;
+  text-decoration: none;
+}
+
+.signup:hover {
+  text-decoration: underline;
+}

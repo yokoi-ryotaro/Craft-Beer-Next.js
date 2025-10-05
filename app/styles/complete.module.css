@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#mainsection{
+	margin: 0 auto;
+	padding: 50px 100px 0 100px;
+	max-width: 1200px;
+}
+
+.completeMassage {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.mypageButton {
+  margin-top: 20px;
+  width: 150px;
+	padding: 12px;
+	background-color:  rgb(249, 217, 76);
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+  font-size: 1.1rem;
+	transition: background-color 0.3s ease;
+	display: inline-flex;
+	justify-content: center;
+}
+
+.completeButton:hover {
+	opacity: 0.6;
+}

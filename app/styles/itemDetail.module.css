@@ -1,0 +1,137 @@
+@charset "UTF-8";
+
+#maincontent{
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+#mainsection{
+	display: flex;
+	margin: 0 auto;
+	padding: 50px 100px 0 100px;
+	max-width: 1440px;
+}
+
+.itemImg{
+	width: 500px;
+}
+
+.itemImg img{
+	width: 100%;
+}
+
+.itemRight{
+	margin-left: 100px;
+	text-align: left;
+	font-size: 1.2rem;
+}
+
+.itemName{
+	margin-bottom: 30px;
+}
+
+.itemPrice{
+	display: flex;
+	align-items: flex-end;
+}
+
+.priceWithTax{
+	margin-left: 8px;
+	color: red;
+	font-weight: bold;
+	font-size: 1.4rem;
+}
+
+.stock{
+	background-color: red;
+	color: #f0f8ff;
+	font-weight: bold;
+	margin-top: 15px;
+	text-align: center;
+	width: 200px;
+}
+
+.itemDetails{
+	margin-top: 30px;
+}
+
+.description{
+	margin: 30px 0 30px 0;
+}
+
+.quantity{
+	font-size: 1rem;
+}
+
+.quantityArea{
+	margin-bottom: 30px;
+}
+
+.quantityButton{
+	width: 180px;
+	border: solid;
+	border-color: rgb(150, 150, 150);
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#decreaseQuantity,
+#quantity,
+#increaseQuantity{
+	font-size: 1rem;
+}
+
+#quantity{
+	text-align: center;
+}
+
+/*［input type=”number”］の上下矢印非表示*/
+#quantity::-webkit-inner-spin-button,
+#quantity::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.addToCartBtn{
+	background-color: rgb(249, 217, 76);
+	width: 400px;
+	padding: 10px 0;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.addToCartBtn:hover{
+	background-color: rgb(243, 199, 85);
+	transform: scale(1.02);
+}
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+	margin-top: 100px;
+  /*justify-content: center; /* 縦方向中央 */
+  align-items: center;     /* 横方向中央 */
+  height: 100vh;           /* 画面全体の高さ */
+}
+
+.spinner {
+  border: 4px solid #f3f3f3; /* 薄いグレー */
+  border-top: 4px solid #3498db; /* 青色 */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width:1300px) {
+  
+	.itemImg{
+		width: 300px;
+	}
+}

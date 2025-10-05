@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+#maincontent{
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+#mainsection{
+	display: flex;
+	margin: 0 auto;
+	padding: 50px 100px 0 100px;
+	max-width: 1440px;
+}
+
+.sectionLeft {
+	flex: 1;
+	width: auto;
+	min-width: 200px;
+	height: 100%;
+	background-color: #f9f9f9;
+	padding: 20px;
+	border-radius: 16px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.sectionLeft input[type="text"] {
+	width: 100%;
+	padding: 8px 12px;
+	margin-bottom: 20px;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	background-color: white;
+}
+
+.filterGroup {
+	margin-bottom: 24px;
+}
+
+.filterGroup h3 {
+	font-size: 15px;
+	color: #444;
+	margin-bottom: 8px;
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 4px;
+}
+
+.filterGroup label {
+	display: block;
+	margin: 5px 0;
+	font-size: 14px;
+	text-align: left;
+	cursor: pointer;
+}
+
+.filterGroup input[type="checkbox"] {
+	margin-right: 3px;
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.filterGroup input[type="range"] {
+	margin-top: 10px;
+}
+
+.filterGroup select {
+	width: 100%;
+	padding: 6px 10px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	font-size: 14px;
+	background-color: white;
+	cursor: pointer;
+	appearance: auto;
+	-webkit-appearance: menulist; /* Safari用 */
+	-moz-appearance: menulist; /* Firefox用 */
+}
+
+#clearButton {
+	width: 100%;
+  padding: 10px;
+  background-color: #ccc;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#clearButton:hover {
+	background-color: #aaa;
+}
+
+.sectionLeft button[type="submit"] {
+	width: 100%;
+  padding: 10px;
+	margin-top: 10px;
+  background-color: #c79549;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sectionLeft button[type="submit"]:hover {
+	background-color:#d3a55c;
+}
+
+.sectionRight{
+	flex: 5;
+	margin-left:30px ;
+}
+
+.sortContainer {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 20px; 
+}
+
+.sortContainer label {
+	font-size: 14px;
+	color: #555;
+}
+
+.sortContainer select {
+	font-size: 14px;
+	cursor: pointer;
+	appearance: auto;
+	-webkit-appearance: menulist; /* Safari用 */
+	-moz-appearance: menulist; /* Firefox用 */
+	text-align: center;
+}
+
+.noResultsMessage {
+	text-align: center;
+	margin: 40px 0;
+	font-size: 1.4rem;
+	color: #666;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.itemCard {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	padding: 15px;
+	text-align: center;
+	background-color: #fff;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.itemCard:hover{
+	opacity: 1;
+	transform: translateY(-4px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
+}
+
+.itemCard img {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+.pagination {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.pagination a {
+	margin: 0 5px;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* 横方向中央 */
+}
+
+.spinner {
+  border: 4px solid #f3f3f3; /* 薄いグレー */
+  border-top: 4px solid #3498db; /* 青色 */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width:1300px) {
+  
+	.gridContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+	}
+}

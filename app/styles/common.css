@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+body {
+	min-width: 980px;
+}
+
+#maincontent{
+	margin-bottom: 100px;
+	text-align: center;
+}
+
+#mainsection{
+	margin: 0 auto;
+	padding: 50px 100px 0 100px;
+	max-width: 1200px;
+}

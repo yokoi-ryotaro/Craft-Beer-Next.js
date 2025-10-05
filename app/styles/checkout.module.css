@@ -1,0 +1,113 @@
+@charset "UTF-8";
+
+#mainsection{
+	margin: 0 auto;
+	padding: 50px 100px 0 100px;
+	max-width: 1200px;
+}
+
+.cartTable {
+	width: 100%;
+	align-items: center;
+}
+
+.cartTd {
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+
+.totalPrice {
+	margin-top: 30px;
+	padding: 0 80px;
+	text-align: right;
+}
+
+.paymentTotal {
+	font-weight: bold;
+	font-size: 1.2rem;
+	margin-top: 10px;
+}
+
+.h2Title {
+	margin-top: 50px;
+}
+
+.input {
+	/*width: 100%; */
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	transition: border-color 0.3s ease;
+}
+
+.input:focus {
+	border-color: #3498db;
+	outline: none;
+}
+
+.formRow {
+	display: flex;
+	align-items: center;
+	margin-top: 15px;
+	justify-content: center;
+}
+
+.formLabel {
+	width: 200px;
+	text-align: left;
+	align-items: center;
+}
+
+.payment {
+	width: auto;
+	margin-top: 15px;
+}
+
+.buttomButton {
+	margin-top: 50px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.backCart {
+	padding: 12px;
+	text-decoration: underline;
+}
+
+.confirmButton {
+	width: 180px;
+	padding: 12px;
+	background-color: #28a745;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.confirmButton:hover {
+	background-color:#218838;
+}
+
+.spinnerContainer {
+  display: flex;
+  flex-direction: column;
+	margin-top: 100px;
+  /*justify-content: center; /* 縦方向中央 */
+  align-items: center;     /* 横方向中央 */
+  height: 100vh;           /* 画面全体の高さ */
+}
+
+.spinner {
+  border: 4px solid #f3f3f3; /* 薄いグレー */
+  border-top: 4px solid #3498db; /* 青色 */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
