@@ -27,10 +27,9 @@ export default async function CartPage() {
   const cartItems = cart?.items ?? [];
 
   const totalPrice = cartItems.reduce(
-    (sum, ci) => sum + (ci.item.price ?? 0) * (1 + TAX_RATE) * ci.quantity,
-    0
+    (sum, ci) => 
+      sum + Math.round((ci.item.price ?? 0) * (1 + TAX_RATE)) * ci.quantity,0
   );
-
   const shippingFee = totalPrice <= 1999 ? 1000 : totalPrice <= 4999 ? 500 : 0;
   const paymentTotal = totalPrice + shippingFee;
 

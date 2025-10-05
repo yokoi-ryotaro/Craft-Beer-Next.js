@@ -56,8 +56,8 @@ export default function ConfirmPage() {
   );
 
   const totalPrice = data.cartItems.reduce(
-    (sum, item) => sum + item.price * (1 + TAX_RATE) * item.quantity,
-    0
+    (sum, item) => 
+      sum + Math.round(item.price * (1 + TAX_RATE)) * item.quantity,0
   );
   const shippingFee = totalPrice <= 1999 ? 1000 : totalPrice <= 4999 ? 500 : 0;
   const paymentTotal = totalPrice + shippingFee;
