@@ -14,6 +14,8 @@ const protectedPaths = [
 ];
 
 export async function middleware(req: NextRequest) {
+  console.log("🔍 Cookie token:", req.cookies.get("session_token")?.value);
+  
   const { pathname } = req.nextUrl;
 
   // 静的ファイルやAPI、ログインページなどは除外

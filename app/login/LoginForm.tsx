@@ -22,15 +22,14 @@ export default function LoginForm() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
+      credentials: "include", // ✅ Cookieを確実に保持
     });
 
     if (res.ok) {
       router.push("/mypage");
     } else {
       const data = await res.json();
-      setErrorMessage(
-        data.error || "メールアドレスまたはパスワードが正しくありません。"
-      );
+      setErrorMessage(data.error || "メールアドレスまたはパスワードが正しくありません。");
     }
   };
 
