@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       { status: 401 }
     );
   }
-
+  /*
   const token = await new SignJWT({ userId: user.id })
     .setProtectedHeader({ alg: "HS256" })
     .setExpirationTime("7d")
@@ -42,4 +42,25 @@ export async function POST(req: Request) {
   });
 
   return res;
+  */
+
+  const token = await new SignJWT({ userId: user.id })
+  .setProtectedHeader({ alg: "HS256" })
+  .setExpirationTime("7d")
+  .sign(secret);
+
+  const res = new Response(JSON.stringify({ success: true }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
+
+  res.headers.append(
+    "Set-Cookie",
+    `session_token=${token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=${60 * 60 * 24 * 7}; ${
+      process.env.NODE_ENV === "production" ? "Secure;" : ""
+    }`
+  );
+
+  return res;
+
 }
