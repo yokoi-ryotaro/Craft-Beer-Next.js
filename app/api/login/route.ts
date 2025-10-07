@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { SignJWT } from "jose";
 
 const secret = new TextEncoder().encode(process.env.SESSION_SECRET || "secret");
-const cookieName = "session_token";
+//const cookieName = "session_token";
 
 export async function POST(req: Request) {
   const { email, password } = await req.json();
