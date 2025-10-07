@@ -1,24 +1,27 @@
-// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
 const secret = new TextEncoder().encode(process.env.SESSION_SECRET || "secret");
 
-// ログイン必須のパス（ここに含まれるURLはセッションチェック対象）
-const protectedPaths = [
-  "/checkout",
-  "/mypage",
-  "/order",
-  "/cart",
-];
+// ログイン必須のパス
+const protectedPaths = ["/checkout", "/mypage", "/order", "/cart"];
+
+// Cookie をパースする補助関数
+function parseCookie(cookieHeader: string | null) {
+  if (!cookieHeader) return {};
+  return Object.fromEntries(
+    cookieHeader.split("; ").map((c) => {
+      const [key, ...v] = c.split("=");
+      return [key, decodeURIComponent(v.join("="))];
+    })
+  );
+}
 
 export async function middleware(req: NextRequest) {
-  console.log("🔍 Cookie token:", req.cookies.get("session_token")?.value);
-  
   const { pathname } = req.nextUrl;
 
-  // 静的ファイルやAPI、ログインページなどは除外
+  // 静的ファイル・API・ログイン/サインアップは除外
   if (
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
@@ -30,46 +33,40 @@ export async function middleware(req: NextRequest) {
   }
 
   // 保護対象ルートでなければスルー
-  const requiresAuth = protectedPaths.some((path) => pathname.startsWith(path));
-  if (!requiresAuth) {
-    return NextResponse.next();
+  const requiresAuth = protectedPaths.some((path) =>
+    pathname.startsWith(path)
+  );
+  if (!requiresAuth) return NextResponse.next();
+
+  // Cookie 取得
+  let token = req.cookies.get("session_token")?.value;
+
+  // Vercel の場合、cookie が取れない時は headers から取得
+  if (!token) {
+    const cookies = parseCookie(req.headers.get("cookie"));
+    token = cookies["session_token"];
   }
 
-  // セッションクッキーを取得
-  const token = req.cookies.get("session_token")?.value;
-
   if (!token) {
-    // 未ログイン → ログインページにリダイレクト
     const loginUrl = new URL("/login", req.url);
-    loginUrl.searchParams.set("redirect", pathname); // リダイレクト元を保持
+    loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
   try {
-    // JWT 検証
     const { payload } = await jwtVerify(token, secret);
-
-    // 有効なセッション → 続行
     const res = NextResponse.next();
-    // ユーザーIDをリクエストヘッダーに追加（サーバー側で使いたい場合）
     res.headers.set("x-user-id", String(payload.userId));
     return res;
-
-  } catch (error) {
-    console.error("❌ Invalid session token:", error);
-    // トークンが無効または期限切れ → ログインページへ
+  } catch (err) {
+    console.error("❌ Invalid session token:", err);
     const loginUrl = new URL("/login", req.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 }
 
-// ミドルウェアを適用するルート範囲
+// 適用するルート
 export const config = {
-  matcher: [
-    "/checkout/:path*",
-    "/mypage/:path*",
-    "/order/:path*",
-    "/cart/:path*",
-  ],
+  matcher: ["/checkout/:path*", "/mypage/:path*", "/order/:path*", "/cart/:path*"],
 };
