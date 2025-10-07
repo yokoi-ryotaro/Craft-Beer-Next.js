@@ -4,6 +4,7 @@ import { jwtVerify } from "jose";
 
 const secret = new TextEncoder().encode(process.env.SESSION_SECRET || "secret");
 
+
 // ログイン必須のパス
 const protectedPaths = ["/checkout", "/mypage", "/order", "/cart"];
 
@@ -20,6 +21,8 @@ function parseCookie(cookieHeader: string | null) {
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  
+  console.log(req.cookies.get("session_token"))
 
   // 静的ファイル・API・ログイン/サインアップは除外
   if (
