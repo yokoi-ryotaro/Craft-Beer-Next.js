@@ -5,6 +5,7 @@ import styles from "../../styles/complete.module.css";
 import Link from "next/link";
 
 export default function CompletePage() {
+  
   return (
     <main id="maincontent">
       <section id={styles.mainsection}>

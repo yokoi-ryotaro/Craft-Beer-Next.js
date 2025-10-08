@@ -30,6 +30,8 @@ type UserForm = {
 const TAX_RATE = 0.1;
 
 export default function ConfirmPage() {
+  
+
   const [data, setData] = useState<UserForm | null>(null);
   const router = useRouter();
 
@@ -98,7 +100,7 @@ export default function ConfirmPage() {
                 <td className={styles.cartTd}>{item.name}</td>
                 <td className={styles.cartTd}>{item.quantity}個</td>
                 <td className={styles.cartTd}>
-                  ¥{(item.price * (1 + TAX_RATE) * item.quantity).toLocaleString()}
+                  ¥{(Math.round((item.price * (1 + TAX_RATE))) * item.quantity).toLocaleString()}
                 </td>
               </tr>
             ))}

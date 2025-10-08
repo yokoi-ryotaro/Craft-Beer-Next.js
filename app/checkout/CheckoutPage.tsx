@@ -139,7 +139,7 @@ export default function CheckoutPage({
                     {item.quantity}個
                   </td>
                   <td className={styles.cartTd}>
-                    ¥{(item.price * (1 + TAX_RATE) * item.quantity).toLocaleString()}
+                    ¥{(Math.round(item.price * (1 + TAX_RATE)) * item.quantity).toLocaleString()}
                   </td>
                 </tr>
               ))}
