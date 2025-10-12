@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "../../styles/password.module.css";
 
@@ -11,6 +12,31 @@ export default function ChangePasswordPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const router = useRouter();
+
+  // ✅ ログイン状態チェック
+    const checkLogin = async () => {
+      const res = await fetch("/api/auth/check");
+      if (!res.ok) {
+        router.push("/login?message=please-login");
+        return;
+      }
+      setIsAuthenticated(true);
+    };
+    checkLogin();
+
+  // ローディング中（ログイン確認中）
+  if (isAuthenticated === null) {
+    return (
+      <main id="maincontent">
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+          <p>読み込み中...</p>
+        </div>
+      </main>
+    );
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

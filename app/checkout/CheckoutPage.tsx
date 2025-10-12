@@ -27,13 +27,7 @@ type User = {
 
 const TAX_RATE = 0.1;
 
-export default function CheckoutPage({ 
-  cartItems, 
-  user 
-  }: { 
-  cartItems: CartItem[];
-  user: User | null; 
-  }) {
+export default function CheckoutPage({ cartItems, user }: {cartItems: CartItem[];user: User | null; }){
   const router = useRouter();
 
   const totalPrice = cartItems.reduce(

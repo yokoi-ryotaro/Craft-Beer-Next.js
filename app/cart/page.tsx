@@ -1,18 +1,19 @@
 // app/cart/page.tsx
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import CartItemRow from "./CartItemRow";
 import styles from "../styles/cart.module.css";
-import { redirect } from "next/navigation";
 
 const TAX_RATE = 0.1;
 
 export default async function CartPage() {
   
   const sessionUser = await getCurrentUser();
-  if (!sessionUser) redirect("/login?message=please-login");
-
+  if (!sessionUser) {
+    redirect("/login?message=please-login");
+  }
   // 1ユーザー=1カート 前提
   const cart = await prisma.cart.findFirst({
     where: { userId: sessionUser?.id },

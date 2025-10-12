@@ -11,6 +11,21 @@ export default async function Checkout() {
   }
   const userId = sessionUser?.id;
 
+  // 1ユーザー=1カート 前提
+  const cart = await prisma.cart.findFirst({
+    where: { userId: sessionUser?.id },
+    include: { 
+      items: { 
+        include: { item: true },
+        orderBy: { createdAt: "asc" }, 
+      },
+    },
+  });
+
+  if (!cart) {
+    redirect("/cart");
+  }
+
   // DBからカート取得
   const cartItems = await prisma.cartItem.findMany({
     where: { cart: { userId } },

@@ -30,12 +30,26 @@ type UserForm = {
 const TAX_RATE = 0.1;
 
 export default function ConfirmPage() {
-  
-
   const [data, setData] = useState<UserForm | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const router = useRouter();
 
   useEffect(() => {
+    // ✅ ログイン状態チェック
+    const checkLogin = async () => {
+      const res = await fetch("/api/auth/check");
+      if (!res.ok) {
+        router.push("/login?message=please-login");
+        return;
+      }
+      setIsAuthenticated(true);
+    };
+    checkLogin();
+  }, [router]);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
     const fetchData = async () => {
       const res = await fetch("/api/checkout/confirm");
       if (res.ok) {
@@ -46,16 +60,18 @@ export default function ConfirmPage() {
       }
     };
     fetchData();
-  }, [router]);
+  }, [isAuthenticated, router]);
 
-  if (!data) return (
-    <main id="maincontent">
-      <div className={styles.spinnerContainer}>
-        <div className={styles.spinner}></div>
-        <p>読み込み中...</p>
-      </div>
-    </main>
-  );
+  if (isAuthenticated === null || !data) {
+    return (
+      <main id="maincontent">
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+          <p>読み込み中...</p>
+        </div>
+      </main>
+    );
+  }
 
   const totalPrice = data.cartItems.reduce(
     (sum, item) => 

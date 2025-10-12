@@ -16,7 +16,7 @@ const formatDate = (date: Date) => {
 export default async function MypagePage() {
   const sessionUser = await getCurrentUser();
   if (!sessionUser) {
-    redirect("/login");
+    redirect("/login?message=please-login");
   }
 
   const dbUser = await prisma.user.findUnique({
@@ -25,7 +25,7 @@ export default async function MypagePage() {
   });
 
   if (!dbUser) {
-    redirect("/login");
+    redirect("/login?message=please-login");
   }
 
   const fullName = `${dbUser.lastName} ${dbUser.firstName}`;
