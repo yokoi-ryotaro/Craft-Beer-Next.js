@@ -3,7 +3,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { fetchWithBaseUrl } from "@/lib/fetchWithBaseUrl";
 import styles from "../../styles/confirm.module.css";
 
 type CartItem = {
@@ -36,21 +35,16 @@ export default function ConfirmPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const res = await fetchWithBaseUrl("/api/auth/check", { credentials: "include" });
-        const data = await res.json();
-        if (res.ok && data.authenticated) {
-          setIsAuthenticated(true);
-        } else {
-          router.push("/login?message=please-login");
-        }
-      } catch (error) {
-        console.error("Auth check failed", error);
-        router.push("/login?message=please-login");
+    // ✅ ログイン状態チェック
+    const checkLogin = async () => {
+      const res = await fetch("/api/auth/check");
+      if (!res.ok) {
+        router.push("/login");
+        return;
       }
+      setIsAuthenticated(true);
     };
-    checkAuth();
+    checkLogin();
   }, [router]);
 
   useEffect(() => {
