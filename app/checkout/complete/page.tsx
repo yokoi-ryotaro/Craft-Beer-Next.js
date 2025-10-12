@@ -15,7 +15,7 @@ export default function CompletePage() {
     const checkLogin = async () => {
       const res = await fetch("/api/auth/check");
       if (!res.ok) {
-        router.push("/login?message=please-login");
+        router.push("/login");
         return;
       }
       setIsAuthenticated(true);
