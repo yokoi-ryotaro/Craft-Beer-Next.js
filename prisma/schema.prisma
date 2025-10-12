@@ -14,6 +14,8 @@ model CartItem {
   quantity  Int
   createdAt DateTime? @default(now())
   updatedAt DateTime?
+
+  //リレーション
   cart      Cart      @relation(fields: [cartId], references: [id])
   item      Item      @relation(fields: [itemId], references: [id])
 }
@@ -23,6 +25,8 @@ model Cart {
   userId    Int        @unique
   createdAt DateTime?  @default(now())
   updatedAt DateTime?
+
+  //リレーション
   user      User       @relation(fields: [userId], references: [id])
   items     CartItem[]
 }
@@ -42,6 +46,8 @@ model CheckoutTemp {
   paymentMethod String
   createdAt     DateTime? @default(now())
   updatedAt     DateTime?
+
+  //リレーション
   user          User      @relation(fields: [userId], references: [id])
 }
 
@@ -50,83 +56,94 @@ model Country {
   name     String
   isoCode  String
   isActive Boolean
+
+  //リレーション
   items    Item[]
 }
 
 model Item {
-  name        String?     @unique
-  price       Int?
-  stock       Int?
-  createdAt   DateTime?   @default(now())
-  abv         Float?
-  countriesId Int?
-  image       String?
-  isSoldOut   Boolean     @default(false)
-  itemDetails String?     @db.VarChar(510)
-  nameEnglish String?     @unique
-  salesCount  Int?
-  updatedAt   DateTime?
-  volume      Int?
-  id          Int         @id
-  cartItems   CartItem[]
-  country     Country?    @relation(fields: [countriesId], references: [id])
-  orderItems  OrderItem[]
+  id            Int       @id
+  countriesId   Int?      
+  name          String?   @unique
+  nameEnglish   String?   @unique
+  price         Int?
+  itemDetails   String?   @db.VarChar(510)
+  stock         Int
+  image         String? 
+  volume        Int?
+  abv           Float?    
+  salesCount    Int?
+  isSoldOut     Boolean   @default(false)
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime?
+
+  // リレーション
+  country       Country?  @relation(fields: [countriesId], references: [id])
+  cartItems     CartItem[]
+  orderItems OrderItem[] 
 }
 
 model OrderItem {
-  createdAt DateTime? @default(now())
-  price     Int
-  quantity  Int
-  updatedAt DateTime?
   id        Int       @id @default(autoincrement())
   orderId   Int
   itemId    Int
-  item      Item      @relation(fields: [itemId], references: [id])
-  order     Order     @relation(fields: [orderId], references: [id])
+  quantity  Int
+  price     Int
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? 
+
+  // リレーション
+  order Order @relation(fields: [orderId], references: [id])
+  item  Item  @relation(fields: [itemId], references: [id])
 }
 
 model Order {
-  createdAt     DateTime?   @default(now())
-  building      String?
-  city          String
-  email         String
-  firstName     String
+  
+  id            Int       @id @default(autoincrement())
+  userId        Int
   lastName      String
-  paymentMethod String
-  paymentTotal  Int
-  phoneNumber   String
+  firstName     String
+  email         String
   postCode      String
   prefecture    String
-  shippingFee   Int
+  city          String
   street        String
+  building      String?
+  phoneNumber   String
+  paymentMethod String
   totalPrice    Int
-  updatedAt     DateTime?
-  id            Int         @id @default(autoincrement())
-  userId        Int
-  user          User        @relation(fields: [userId], references: [id])
-  orderItems    OrderItem[]
+  shippingFee   Int
+  paymentTotal  Int
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? 
+
+  // リレーション
+  user        User        @relation(fields: [userId], references: [id])
+  orderItems  OrderItem[]
 }
 
 model User {
-  password      String
-  createdAt     DateTime       @default(now())
-  birthday      DateTime?
-  building      String?
-  city          String
-  firstName     String
-  firstNameKana String?
-  isDeleted     Boolean        @default(false)
-  lastLoginAt   DateTime?
-  lastName      String
-  lastNameKana  String?
-  phoneNumber   String
-  postCode      String
-  prefecture    String
-  role          String         @default("user")
-  street        String
-  updatedAt     DateTime       @updatedAt
-  id            Int            @id @default(autoincrement())
-  email         String         @unique
+  id             Int       @id @default(autoincrement())
+  email          String    @unique
+  password       String
+  lastName       String
+  firstName      String
+  lastNameKana   String?
+  firstNameKana  String?
+  postCode       String
+  prefecture     String
+  city           String
+  street         String
+  building       String?
+  phoneNumber    String
+  birthday       DateTime?
+  isDeleted      Boolean   @default(false)
+  role           String    @default("user")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  lastLoginAt    DateTime?
+
+  // リレーション
   carts         Cart?
   checkoutTemps CheckoutTemp[]
   orders        Order[]

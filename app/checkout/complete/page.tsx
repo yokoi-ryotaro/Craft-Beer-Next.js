@@ -16,7 +16,10 @@ export default function CompletePage() {
   }, []);
 
   useEffect(() => {
-    if (!token) return; // token未設定なら何もしない
+    if (!token) {
+      router.replace("/"); // トークンなし → トップへ
+      return;
+    }
     const verify = async () => {
       const res = await fetch(`/api/checkout/verify?token=${token}`);
       if (res.ok) {

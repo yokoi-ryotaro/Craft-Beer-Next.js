@@ -80,7 +80,7 @@ export async function GET(req: Request) {
       await tx.checkoutTemp.delete({ where: { id: temp.id } });
     });
 
-    // ✅ 完了ページ用の一時トークンを発行（有効期限は短いメモリ管理 or DB保存）
+    // 完了ページ用の一時トークンを発行（有効期限は短いメモリ管理 or DB保存）
     const token = crypto.randomBytes(16).toString("hex");
     await prisma.checkoutToken.create({
       data: {
@@ -90,7 +90,7 @@ export async function GET(req: Request) {
       },
     });
 
-    // ✅ トークン付きでリダイレクト
+    // トークン付きでリダイレクト
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/complete?token=${token}`);
   } catch (error) {
     console.error("注文確定エラー:", error);
