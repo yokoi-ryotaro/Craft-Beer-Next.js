@@ -7,16 +7,17 @@ import styles from "../../styles/complete.module.css";
 
 export default function CompletePage() {
   const [verified, setVerified] = useState<boolean | null>(null);
+  const [token, setToken] = useState<string | null>(null); // ← tokenをstateに保持
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const token = searchParams.get("token");
 
   useEffect(() => {
+    const searchParams = useSearchParams(); // ← useEffect 内で呼ぶ
+    setToken(searchParams.get("token"));
+  }, []);
+
+  useEffect(() => {
+    if (!token) return; // token未設定なら何もしない
     const verify = async () => {
-      if (!token) {
-        router.replace("/"); // トークンなし → トップへ
-        return;
-      }
       const res = await fetch(`/api/checkout/verify?token=${token}`);
       if (res.ok) {
         setVerified(true);
