@@ -1,34 +1,39 @@
 // app/checkout/complete/page.tsx
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import styles from "../../styles/complete.module.css";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import styles from "../../styles/complete.module.css";
 
 export default function CompletePage() {
-
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [verified, setVerified] = useState<boolean | null>(null);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
-  // ✅ ログイン状態チェック
-    const checkLogin = async () => {
-      const res = await fetch("/api/auth/check");
-      if (!res.ok) {
-        router.push("/login");
+  useEffect(() => {
+    const verify = async () => {
+      if (!token) {
+        router.replace("/");
         return;
       }
-      setIsAuthenticated(true);
+      const res = await fetch(`/api/checkout/verify?token=${token}`);
+      if (res.ok) {
+        setVerified(true);
+      } else {
+        router.replace("/");
+      }
     };
-    checkLogin();
+    verify();
+  }, [token, router]);
 
-  // ローディング中（ログイン確認中）
-  if (isAuthenticated === null) {
+  if (verified === null) {
     return (
       <main id="maincontent">
         <div className={styles.spinnerContainer}>
           <div className={styles.spinner}></div>
-          <p>読み込み中...</p>
+          <p>確認中...</p>
         </div>
       </main>
     );
@@ -38,9 +43,7 @@ export default function CompletePage() {
     <main id="maincontent">
       <section id={styles.mainsection}>
         <h1>ご注文ありがとうございました！</h1>
-        <div className={styles.completeMassage}>
-          <p>ご注文内容を確認の上、発送準備を進めさせていただきます。</p>
-        </div>
+        <p>ご注文内容を確認の上、発送準備を進めさせていただきます。</p>
         <div className={styles.mypageButton}>
           <Link href="/mypage" className="button">
             マイページへ

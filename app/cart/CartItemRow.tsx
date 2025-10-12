@@ -38,7 +38,7 @@ export default function CartItemRow({ cartItem }: { cartItem: CartItem }) {
     setLoading(false);
     if (res.ok) {
       setQuantity(newQty);
-      router.refresh(); // サーバー版 page を再フェッチして合計等を更新
+      router.refresh(); 
     } else {
       // エラー処理
       console.error("update failed");

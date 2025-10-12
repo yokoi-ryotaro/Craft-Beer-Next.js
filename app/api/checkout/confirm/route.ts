@@ -1,7 +1,7 @@
 // app/api/checkout/confirm/route.ts
 import { NextResponse } from "next/server";
 
-let checkoutData: any = null; // 簡易的にサーバー変数に保存（本番はDBやRedis推奨）
+let checkoutData: any = null; 
 
 export async function POST(req: Request) {
   const body = await req.json();
