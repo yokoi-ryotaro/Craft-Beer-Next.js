@@ -1,4 +1,3 @@
-// app/checkout/complete/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -15,7 +14,7 @@ export default function CompletePage() {
   useEffect(() => {
     const verify = async () => {
       if (!token) {
-        router.replace("/");
+        router.replace("/"); // トークンなし → トップへ
         return;
       }
       const res = await fetch(`/api/checkout/verify?token=${token}`);

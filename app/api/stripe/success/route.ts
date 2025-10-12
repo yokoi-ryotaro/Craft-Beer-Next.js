@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import Stripe from "stripe";
 import { getCurrentUser } from "@/lib/auth";
 import crypto from "crypto";
-import { checkoutTokenStore } from "@/lib/checkoutTokenStore";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
 const TAX_RATE = 0.1;
@@ -24,7 +23,10 @@ export async function GET(req: Request) {
 
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const tempId = session.metadata?.tempId;
-    if (!tempId) throw new Error("Stripe metadata に tempId が存在しません。");
+
+    if (!tempId) {
+      throw new Error("Stripe metadata に tempId が存在しません。");
+    }
 
     const temp = await prisma.checkoutTemp.findUnique({ where: { id: Number(tempId) } });
     if (!temp) throw new Error("一時注文情報が見つかりません。");
@@ -44,7 +46,6 @@ export async function GET(req: Request) {
     const shippingFee = totalPrice <= 1999 ? 1000 : totalPrice <= 4999 ? 500 : 0;
     const paymentTotal = Math.round(totalPrice + shippingFee);
 
-    // DBトランザクション
     await prisma.$transaction(async (tx) => {
       const order = await tx.order.create({
         data: {
@@ -79,11 +80,17 @@ export async function GET(req: Request) {
       await tx.checkoutTemp.delete({ where: { id: temp.id } });
     });
 
-    // トークン生成＆登録
+    // ✅ 完了ページ用の一時トークンを発行（有効期限は短いメモリ管理 or DB保存）
     const token = crypto.randomBytes(16).toString("hex");
-    checkoutTokenStore.add(token, sessionUser.id);
+    await prisma.checkoutToken.create({
+      data: {
+        userId: sessionUser.id,
+        token,
+        createdAt: new Date(),
+      },
+    });
 
-    // トークン付きでリダイレクト
+    // ✅ トークン付きでリダイレクト
     return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASE_URL}/checkout/complete?token=${token}`);
   } catch (error) {
     console.error("注文確定エラー:", error);
