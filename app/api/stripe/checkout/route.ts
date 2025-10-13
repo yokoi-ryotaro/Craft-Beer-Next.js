@@ -55,7 +55,7 @@ export async function POST(req: Request) {
         },
       ],
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/checkout`,
+      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/stripe/cancel?session_id={CHECKOUT_SESSION_ID}`,
       metadata,
     });
 
