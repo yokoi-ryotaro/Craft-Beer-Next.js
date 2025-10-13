@@ -8,57 +8,57 @@ datasource db {
 }
 
 model CartItem {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   cartId    Int
   itemId    Int
   quantity  Int
   createdAt DateTime? @default(now())
-  updatedAt DateTime?
+  updatedAt DateTime? 
 
-  //リレーション
-  cart      Cart      @relation(fields: [cartId], references: [id])
-  item      Item      @relation(fields: [itemId], references: [id])
+  // リレーション
+  cart Cart @relation(fields: [cartId], references: [id])
+  item Item @relation(fields: [itemId], references: [id])
 }
 
 model Cart {
   id        Int        @id @default(autoincrement())
   userId    Int        @unique
   createdAt DateTime?  @default(now())
-  updatedAt DateTime?
+  updatedAt DateTime?  
 
   //リレーション
-  user      User       @relation(fields: [userId], references: [id])
-  items     CartItem[]
+  items CartItem[]
+  user User @relation(fields: [userId], references: [id])
 }
 
 model CheckoutTemp {
-  id            Int       @id @default(autoincrement())
-  userId        Int
-  lastName      String
-  firstName     String
-  email         String
-  postCode      String
-  prefecture    String
-  city          String
-  street        String
-  building      String?
-  phoneNumber   String
+  id           Int       @id @default(autoincrement())
+  userId       Int
+  lastName     String
+  firstName    String
+  email        String
+  postCode     String
+  prefecture   String
+  city         String
+  street       String
+  building     String?
+  phoneNumber  String
   paymentMethod String
-  createdAt     DateTime? @default(now())
-  updatedAt     DateTime?
+  createdAt    DateTime? @default(now())
+  updatedAt    DateTime? 
 
-  //リレーション
-  user          User      @relation(fields: [userId], references: [id])
+  // リレーション
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Country {
-  id       Int     @id
+  id       Int      @id
   name     String
   isoCode  String
   isActive Boolean
 
-  //リレーション
-  items    Item[]
+  // Item とのリレーション（1対多）
+  items Item[]
 }
 
 model Item {
@@ -98,7 +98,6 @@ model OrderItem {
 }
 
 model Order {
-  
   id            Int       @id @default(autoincrement())
   userId        Int
   lastName      String
@@ -144,10 +143,10 @@ model User {
   lastLoginAt    DateTime?
 
   // リレーション
-  carts         Cart?
-  checkoutTemps CheckoutTemp[]
-  orders        Order[]
-  checkoutTokens CheckoutToken[]
+  carts           Cart[]
+  orders          Order[]
+  checkoutTemps CheckoutTemp[] 
+  checkoutToken CheckoutToken[]
 }
 
 model CheckoutToken {
