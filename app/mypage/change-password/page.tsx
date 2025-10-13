@@ -30,10 +30,13 @@ export default function ChangePasswordPage() {
   if (isAuthenticated === null) {
     return (
       <main id="maincontent">
-        <div className={styles.spinnerContainer}>
-          <div className={styles.spinner}></div>
-          <p>読み込み中...</p>
-        </div>
+        <h1>パスワード変更</h1>
+        <section id={styles.mainsection}>
+          <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <p>読み込み中...</p>
+          </div>
+        </section>
       </main>
     );
   }

@@ -1,7 +1,7 @@
 // app/checkout/CheckoutPage.tsx
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../styles/checkout.module.css";
 
@@ -27,8 +27,83 @@ type User = {
 
 const TAX_RATE = 0.1;
 
-export default function CheckoutPage({ cartItems, user }: {cartItems: CartItem[];user: User | null; }){
+export default function CheckoutPage() {
   const router = useRouter();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const [form, setForm] = useState({
+    lastName: "",
+    firstName: "",
+    email: "",
+    postCode: "",
+    prefecture: "",
+    city: "",
+    street: "",
+    building: "",
+    phoneNumber: "",
+    paymentMethod: "CREDIT",
+  });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch("/api/checkout");
+
+      if (res.status === 401) {
+        router.push("/login");
+        return;
+      }
+      if (res.status === 404) {
+        router.push("/cart");
+        return;
+      }
+
+      if (!res.ok) {
+        alert("データ取得に失敗しました");
+        return;
+      }
+
+      const data = await res.json();
+      setUser(data.user);
+      setCartItems(data.items);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [router]);
+
+  useEffect(() => {
+    if (user) {
+      setForm({
+        lastName: user.lastName ?? "",
+        firstName: user.firstName ?? "",
+        email: user.email ?? "",
+        postCode: user.postCode ?? "",
+        prefecture: user.prefecture ?? "",
+        city: user.city ?? "",
+        street: user.street ?? "",
+        building: user.building ?? "",
+        phoneNumber: user.phoneNumber ?? "",
+        paymentMethod: "CREDIT",
+      });
+    }
+  }, [user]);
+
+  if (loading) return (
+    <main id="maincontent">
+      <h1>ご購入手続き</h1>
+      <section id={styles.mainsection}>
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+          <p>読み込み中...</p>
+        </div>
+      </section>
+    </main>
+  );
+  if (!user || !cartItems.length) return <p>カートが空です。</p>;
 
   const totalPrice = cartItems.reduce(
     (sum, item) => 
@@ -37,25 +112,25 @@ export default function CheckoutPage({ cartItems, user }: {cartItems: CartItem[]
   const shippingFee = totalPrice <= 1999 ? 1000 : totalPrice <= 4999 ? 500 : 0;
   const paymentTotal = totalPrice + shippingFee;
 
-  // フォーム入力管理
-  const [form, setForm] = useState({
-    lastName: user?.lastName ?? "",
-    firstName: user?.firstName ?? "",
-    email: user?.email ?? "",
-    postCode: user?.postCode ?? "",
-    prefecture: user?.prefecture ?? "",
-    city: user?.city ?? "",
-    street: user?.street ?? "",
-    building: user?.building ?? "",
-    phoneNumber: user?.phoneNumber ?? "",
-    paymentMethod: "CREDIT",
-  });
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const res = await fetch("/api/checkout/confirm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...form, cartItems }),
+    });
+
+    if (res.ok) {
+      router.push("/checkout/confirm");
+    } else {
+      alert("エラーが発生しました");
+    }
   };
 
   // 郵便番号入力時に自動検索
@@ -85,22 +160,6 @@ export default function CheckoutPage({ cartItems, user }: {cartItems: CartItem[]
         console.error(err);
         setErrors({ ...errors, postCode: "住所検索に失敗しました。" });
       }
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    const res = await fetch("/api/checkout/confirm", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...form, cartItems }),
-    });
-
-    if (res.ok) {
-      router.push("/checkout/confirm");
-    } else {
-      alert("エラーが発生しました");
     }
   };
 

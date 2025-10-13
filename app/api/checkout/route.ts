@@ -1,9 +1,9 @@
-// app/api/checkout/data/route.ts
+// app/api/checkout/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
     const sessionUser = await getCurrentUser();
     if (!sessionUser) {
@@ -12,17 +12,23 @@ export async function GET() {
 
     const userId = sessionUser.id;
 
-    const cartItems = await prisma.cartItem.findMany({
-      where: { cart: { userId } },
-      include: { item: true },
-      orderBy: { createdAt: "asc" },
+    // 1ユーザー＝1カート想定
+    const cart = await prisma.cart.findFirst({
+      where: { userId },
+      include: {
+        items: {
+          include: { item: true },
+          orderBy: { createdAt: "asc" },
+        },
+      },
     });
 
-    if (!cartItems.length) {
-      return NextResponse.json({ error: "Cart is empty" }, { status: 404 });
+    if (!cart || !cart.items.length) {
+      return NextResponse.json({ error: "Cart not found" }, { status: 404 });
     }
 
-    const items = cartItems.map((ci) => ({
+    // カート商品を整形
+    const cartItems = cart.items.map((ci) => ({
       id: ci.item.id,
       name: ci.item.name ?? "",
       image: ci.item.image ?? "noimage.jpg",
@@ -30,6 +36,7 @@ export async function GET() {
       price: ci.item.price ?? 0,
     }));
 
+    // ユーザー情報を取得
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -45,12 +52,9 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json({ items, user });
+    return NextResponse.json({ user, items: cartItems });
   } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    console.error("❌ checkout/data error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

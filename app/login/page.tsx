@@ -7,12 +7,16 @@ import styles from "../styles/login.module.css";
 
 export default function LoginPage() {
   return (
-    // useSearchParams() を含む LoginForm を Suspense でラップ
     <Suspense fallback={
-      <div className={styles.spinnerContainer}>
-        <div className={styles.spinner}></div>
-        <p>読み込み中...</p>
-      </div>
+      <main id="maincontent">
+        <h1>ログイン</h1>
+        <section id={styles.mainsection}>
+          <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <p>読み込み中...</p>
+          </div>
+        </section>
+      </main>
     }>
       <LoginForm />
     </Suspense>

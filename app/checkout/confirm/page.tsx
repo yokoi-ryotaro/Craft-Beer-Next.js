@@ -65,10 +65,13 @@ export default function ConfirmPage() {
   if (isAuthenticated === null || !data) {
     return (
       <main id="maincontent">
-        <div className={styles.spinnerContainer}>
-          <div className={styles.spinner}></div>
-          <p>読み込み中...</p>
-        </div>
+        <h1>ご注文内容確認</h1>
+        <section id={styles.mainsection}>
+          <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}></div>
+            <p>読み込み中...</p>
+          </div>
+        </section>
       </main>
     );
   }
