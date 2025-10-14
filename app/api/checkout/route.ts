@@ -3,6 +3,11 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
+// ✅ HEADリクエストにも対応させる（Vercelで必須）
+export async function HEAD() {
+  return NextResponse.json({ message: "ok" });
+}
+
 export async function GET(req: Request) {
   try {
     const sessionUser = await getCurrentUser();
@@ -12,7 +17,6 @@ export async function GET(req: Request) {
 
     const userId = sessionUser.id;
 
-    // 1ユーザー＝1カート想定
     const cart = await prisma.cart.findFirst({
       where: { userId },
       include: {
@@ -27,7 +31,6 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: "Cart not found" }, { status: 404 });
     }
 
-    // カート商品を整形
     const cartItems = cart.items.map((ci) => ({
       id: ci.item.id,
       name: ci.item.name ?? "",
@@ -36,7 +39,6 @@ export async function GET(req: Request) {
       price: ci.item.price ?? 0,
     }));
 
-    // ユーザー情報を取得
     const user = await prisma.user.findUnique({
       where: { id: userId },
       select: {
@@ -55,6 +57,9 @@ export async function GET(req: Request) {
     return NextResponse.json({ user, items: cartItems });
   } catch (error) {
     console.error("❌ checkout/data error:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
