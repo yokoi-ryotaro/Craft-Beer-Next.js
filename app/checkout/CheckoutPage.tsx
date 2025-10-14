@@ -353,10 +353,16 @@ export default function CheckoutPage() {
           </label>
 
           <div className={styles.buttomButton}>
-            <a href="/cart" className={styles.backCart}>
+            <a 
+              href="/cart" 
+              className={styles.backCart}
+            >
               カートへ戻る
             </a>
-            <button type="submit" className={styles.confirmButton}>
+            <button 
+              type="submit" 
+              className={styles.confirmButton}
+            >
               確認画面へ
             </button>
           </div>
