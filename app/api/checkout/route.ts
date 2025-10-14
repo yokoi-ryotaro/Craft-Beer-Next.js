@@ -3,7 +3,12 @@ import { NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
-export async function GET() {
+// ✅ HEADリクエストにも対応させる（Vercelで必須）
+export async function HEAD() {
+  return NextResponse.json({ message: "ok" });
+}
+
+export async function GET(req: Request) {
   try {
     const sessionUser = await getCurrentUser();
     if (!sessionUser) {

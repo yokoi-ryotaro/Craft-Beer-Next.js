@@ -97,7 +97,7 @@ export default async function CartPage() {
             <div className={styles.paymentTotal}>お支払合計：¥{paymentTotal.toLocaleString()}</div>
           </div>
           <div className={styles.proceedToCheckout}>
-            <form action="/checkout" method="post">
+            <form action="/checkout" method="get">
               <button type="submit" className={styles.checkout}>
                 ご購入手続きへ
               </button>
