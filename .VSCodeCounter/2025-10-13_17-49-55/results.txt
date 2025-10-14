@@ -1,0 +1,164 @@
+Date : 2025-10-13 17:49:55
+Directory : /Users/yokoiryotaro/craft-beer-ec
+Total : 78 files,  11495 codes, 305 comments, 702 blanks, all 12502 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |      6,749 |          0 |          2 |      6,751 |
+| TypeScript JSX     |         22 |      2,130 |         44 |        176 |      2,350 |
+| PostCSS            |         15 |      1,495 |         35 |        312 |      1,842 |
+| TypeScript         |         26 |        866 |        135 |        147 |      1,148 |
+| MS SQL             |          4 |        174 |         91 |         43 |        308 |
+| JSON with Comments |          1 |         28 |          0 |          1 |         29 |
+| JavaScript         |          2 |         25 |          0 |          7 |         32 |
+| Markdown           |          1 |         23 |          0 |         14 |         37 |
+| XML                |          5 |          5 |          0 |          0 |          5 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                  | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                     |         78 |     11,495 |        305 |        702 |     12,502 |
+| . (Files)                                                                             |          8 |      6,835 |         76 |         26 |      6,937 |
+| app                                                                                   |         55 |      4,249 |        133 |        614 |      4,996 |
+| app (Files)                                                                           |          2 |        176 |          4 |         12 |        192 |
+| app/api                                                                               |         20 |        704 |         54 |        130 |        888 |
+| app/api/auth                                                                          |          1 |          9 |          1 |          1 |         11 |
+| app/api/auth/check                                                                    |          1 |          9 |          1 |          1 |         11 |
+| app/api/cart                                                                          |          3 |         99 |         10 |         19 |        128 |
+| app/api/cart/add                                                                      |          1 |         49 |          5 |          7 |         61 |
+| app/api/cart/delete                                                                   |          1 |         32 |          4 |          7 |         43 |
+| app/api/cart/update                                                                   |          1 |         18 |          1 |          5 |         24 |
+| app/api/checkout                                                                      |          3 |         91 |          7 |         14 |        112 |
+| app/api/checkout (Files)                                                              |          1 |         49 |          4 |          7 |         60 |
+| app/api/checkout/confirm                                                              |          1 |         11 |          1 |          3 |         15 |
+| app/api/checkout/temp                                                                 |          1 |         31 |          2 |          4 |         37 |
+| app/api/countries                                                                     |          1 |          8 |          1 |          1 |         10 |
+| app/api/items                                                                         |          2 |         80 |          5 |         18 |        103 |
+| app/api/items (Files)                                                                 |          1 |         58 |          4 |         14 |         76 |
+| app/api/items/[nameEnglish]                                                           |          1 |         22 |          1 |          4 |         27 |
+| app/api/login                                                                         |          1 |         35 |          3 |          7 |         45 |
+| app/api/logout                                                                        |          1 |          7 |          1 |          1 |          9 |
+| app/api/mypage                                                                        |          2 |         59 |          2 |         15 |         76 |
+| app/api/mypage (Files)                                                                |          1 |         27 |          1 |          7 |         35 |
+| app/api/mypage/change-password                                                        |          1 |         32 |          1 |          8 |         41 |
+| app/api/order                                                                         |          1 |         76 |          5 |         10 |         91 |
+| app/api/signup                                                                        |          1 |         54 |          4 |          8 |         66 |
+| app/api/stripe                                                                        |          3 |        165 |         12 |         33 |        210 |
+| app/api/stripe/cancel                                                                 |          1 |         27 |          4 |          6 |         37 |
+| app/api/stripe/checkout                                                               |          1 |         55 |          4 |         11 |         70 |
+| app/api/stripe/success                                                                |          1 |         83 |          4 |         16 |        103 |
+| app/api/top                                                                           |          1 |         21 |          3 |          3 |         27 |
+| app/cart                                                                              |          3 |        213 |          5 |         14 |        232 |
+| app/checkout                                                                          |          4 |        581 |         10 |         50 |        641 |
+| app/checkout (Files)                                                                  |          2 |        341 |          3 |         28 |        372 |
+| app/checkout/complete                                                                 |          1 |         43 |          3 |          6 |         52 |
+| app/checkout/confirm                                                                  |          1 |        197 |          4 |         16 |        217 |
+| app/items                                                                             |          4 |        429 |         14 |         38 |        481 |
+| app/items (Files)                                                                     |          2 |        268 |         10 |         18 |        296 |
+| app/items/[nameEnglish]                                                               |          2 |        161 |          4 |         20 |        185 |
+| app/login                                                                             |          2 |         80 |          3 |          9 |         92 |
+| app/mypage                                                                            |          4 |        280 |          6 |         22 |        308 |
+| app/mypage (Files)                                                                    |          3 |        170 |          3 |         12 |        185 |
+| app/mypage/change-password                                                            |          1 |        110 |          3 |         10 |        123 |
+| app/signup                                                                            |          1 |        291 |          2 |         27 |        320 |
+| app/styles                                                                            |         15 |      1,495 |         35 |        312 |      1,842 |
+| components                                                                            |          2 |         80 |          0 |          4 |         84 |
+| lib                                                                                   |          3 |         46 |          3 |         10 |         59 |
+| prisma                                                                                |          5 |        280 |         93 |         48 |        421 |
+| prisma (Files)                                                                        |          1 |        106 |          2 |          5 |        113 |
+| prisma/migrations                                                                     |          4 |        174 |         91 |         43 |        308 |
+| prisma/migrations/20250921060817_init                                                 |          1 |         36 |          8 |         12 |         56 |
+| prisma/migrations/20250921070207_init                                                 |          1 |        127 |         66 |         25 |        218 |
+| prisma/migrations/20251012051139_                                                     |          1 |         10 |         10 |          5 |         25 |
+| prisma/migrations/20251012060205_                                                     |          1 |          1 |          7 |          1 |          9 |
+| public                                                                                |          5 |          5 |          0 |          0 |          5 |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                              | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /Users/yokoiryotaro/craft-beer-ec/README.md                                           | Markdown           |         23 |          0 |         14 |         37 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/auth/check/route.ts                         | TypeScript         |          9 |          1 |          1 |         11 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/cart/add/route.ts                           | TypeScript         |         49 |          5 |          7 |         61 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/cart/delete/route.ts                        | TypeScript         |         32 |          4 |          7 |         43 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/cart/update/route.ts                        | TypeScript         |         18 |          1 |          5 |         24 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/checkout/confirm/route.ts                   | TypeScript         |         11 |          1 |          3 |         15 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/checkout/route.ts                           | TypeScript         |         49 |          4 |          7 |         60 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/checkout/temp/route.ts                      | TypeScript         |         31 |          2 |          4 |         37 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/countries/route.ts                          | TypeScript         |          8 |          1 |          1 |         10 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/items/[nameEnglish]/route.ts                | TypeScript         |         22 |          1 |          4 |         27 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/items/route.ts                              | TypeScript         |         58 |          4 |         14 |         76 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/login/route.ts                              | TypeScript         |         35 |          3 |          7 |         45 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/logout/route.ts                             | TypeScript         |          7 |          1 |          1 |          9 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/mypage/change-password/route.ts             | TypeScript         |         32 |          1 |          8 |         41 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/mypage/route.ts                             | TypeScript         |         27 |          1 |          7 |         35 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/order/route.ts                              | TypeScript         |         76 |          5 |         10 |         91 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/signup/route.ts                             | TypeScript         |         54 |          4 |          8 |         66 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/stripe/cancel/route.ts                      | TypeScript         |         27 |          4 |          6 |         37 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/stripe/checkout/route.ts                    | TypeScript         |         55 |          4 |         11 |         70 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/stripe/success/route.ts                     | TypeScript         |         83 |          4 |         16 |        103 |
+| /Users/yokoiryotaro/craft-beer-ec/app/api/top/route.ts                                | TypeScript         |         21 |          3 |          3 |         27 |
+| /Users/yokoiryotaro/craft-beer-ec/app/cart/CartItemRow.tsx                            | TypeScript JSX     |         90 |          2 |          7 |         99 |
+| /Users/yokoiryotaro/craft-beer-ec/app/cart/CartPageClient.tsx                         | TypeScript JSX     |        103 |          2 |          6 |        111 |
+| /Users/yokoiryotaro/craft-beer-ec/app/cart/page.tsx                                   | TypeScript JSX     |         20 |          1 |          1 |         22 |
+| /Users/yokoiryotaro/craft-beer-ec/app/checkout/CheckoutPage.tsx                       | TypeScript JSX     |        337 |          2 |         27 |        366 |
+| /Users/yokoiryotaro/craft-beer-ec/app/checkout/complete/page.tsx                      | TypeScript JSX     |         43 |          3 |          6 |         52 |
+| /Users/yokoiryotaro/craft-beer-ec/app/checkout/confirm/page.tsx                       | TypeScript JSX     |        197 |          4 |         16 |        217 |
+| /Users/yokoiryotaro/craft-beer-ec/app/checkout/page.tsx                               | TypeScript JSX     |          4 |          1 |          1 |          6 |
+| /Users/yokoiryotaro/craft-beer-ec/app/items/ItemsPageClient.tsx                       | TypeScript JSX     |        248 |          9 |         17 |        274 |
+| /Users/yokoiryotaro/craft-beer-ec/app/items/[nameEnglish]/ItemDetail.tsx              | TypeScript JSX     |        131 |          3 |         15 |        149 |
+| /Users/yokoiryotaro/craft-beer-ec/app/items/[nameEnglish]/page.tsx                    | TypeScript JSX     |         30 |          1 |          5 |         36 |
+| /Users/yokoiryotaro/craft-beer-ec/app/items/page.tsx                                  | TypeScript JSX     |         20 |          1 |          1 |         22 |
+| /Users/yokoiryotaro/craft-beer-ec/app/layout.tsx                                      | TypeScript JSX     |         27 |          0 |          2 |         29 |
+| /Users/yokoiryotaro/craft-beer-ec/app/login/LoginForm.tsx                             | TypeScript JSX     |         59 |          2 |          7 |         68 |
+| /Users/yokoiryotaro/craft-beer-ec/app/login/page.tsx                                  | TypeScript JSX     |         21 |          1 |          2 |         24 |
+| /Users/yokoiryotaro/craft-beer-ec/app/mypage/LogoutButton.tsx                         | TypeScript JSX     |         15 |          1 |          4 |         20 |
+| /Users/yokoiryotaro/craft-beer-ec/app/mypage/MypagePageClient.tsx                     | TypeScript JSX     |        135 |          1 |          7 |        143 |
+| /Users/yokoiryotaro/craft-beer-ec/app/mypage/change-password/page.tsx                 | TypeScript JSX     |        110 |          3 |         10 |        123 |
+| /Users/yokoiryotaro/craft-beer-ec/app/mypage/page.tsx                                 | TypeScript JSX     |         20 |          1 |          1 |         22 |
+| /Users/yokoiryotaro/craft-beer-ec/app/page.tsx                                        | TypeScript JSX     |        149 |          4 |         10 |        163 |
+| /Users/yokoiryotaro/craft-beer-ec/app/signup/page.tsx                                 | TypeScript JSX     |        291 |          2 |         27 |        320 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/cart.module.css                          | PostCSS            |        132 |          1 |         26 |        159 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/checkout.module.css                      | PostCSS            |         93 |          2 |         18 |        113 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/common.css                               | PostCSS            |         13 |          0 |          3 |         16 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/complete.module.css                      | PostCSS            |         44 |          0 |          7 |         51 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/confirm.module.css                       | PostCSS            |         88 |          0 |         17 |        105 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/footer.css                               | PostCSS            |         79 |          1 |         20 |        100 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/header.css                               | PostCSS            |         51 |          0 |         12 |         63 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/itemDetail.module.css                    | PostCSS            |        111 |          2 |         24 |        137 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/items.module.css                         | PostCSS            |        184 |          0 |         31 |        215 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/login.module.css                         | PostCSS            |         94 |          0 |         17 |        111 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/mypage.module.css                        | PostCSS            |        171 |          0 |         39 |        210 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/password.module.css                      | PostCSS            |         80 |          0 |         14 |         94 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/ress.css                                 | PostCSS            |        201 |         29 |         52 |        282 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/signup.module.css                        | PostCSS            |         65 |          0 |         10 |         75 |
+| /Users/yokoiryotaro/craft-beer-ec/app/styles/top.css                                  | PostCSS            |         89 |          0 |         22 |        111 |
+| /Users/yokoiryotaro/craft-beer-ec/components/Footer.tsx                               | TypeScript JSX     |         47 |          0 |          2 |         49 |
+| /Users/yokoiryotaro/craft-beer-ec/components/Header.tsx                               | TypeScript JSX     |         33 |          0 |          2 |         35 |
+| /Users/yokoiryotaro/craft-beer-ec/eslint.config.mjs                                   | JavaScript         |         21 |          0 |          5 |         26 |
+| /Users/yokoiryotaro/craft-beer-ec/lib/auth.ts                                         | TypeScript         |         30 |          1 |          6 |         37 |
+| /Users/yokoiryotaro/craft-beer-ec/lib/fetchWithBaseUrl.ts                             | TypeScript         |          8 |          1 |          1 |         10 |
+| /Users/yokoiryotaro/craft-beer-ec/lib/prisma.ts                                       | TypeScript         |          8 |          1 |          3 |         12 |
+| /Users/yokoiryotaro/craft-beer-ec/middleware.disabled.ts                              | TypeScript         |          0 |         75 |          0 |         75 |
+| /Users/yokoiryotaro/craft-beer-ec/next.config.ts                                      | TypeScript         |         10 |          1 |          2 |         13 |
+| /Users/yokoiryotaro/craft-beer-ec/package-lock.json                                   | JSON               |      6,711 |          0 |          1 |      6,712 |
+| /Users/yokoiryotaro/craft-beer-ec/package.json                                        | JSON               |         38 |          0 |          1 |         39 |
+| /Users/yokoiryotaro/craft-beer-ec/postcss.config.mjs                                  | JavaScript         |          4 |          0 |          2 |          6 |
+| /Users/yokoiryotaro/craft-beer-ec/prisma/migrations/20250921060817_init/migration.sql | MS SQL             |         36 |          8 |         12 |         56 |
+| /Users/yokoiryotaro/craft-beer-ec/prisma/migrations/20250921070207_init/migration.sql | MS SQL             |        127 |         66 |         25 |        218 |
+| /Users/yokoiryotaro/craft-beer-ec/prisma/migrations/20251012051139_/migration.sql     | MS SQL             |         10 |         10 |          5 |         25 |
+| /Users/yokoiryotaro/craft-beer-ec/prisma/migrations/20251012060205_/migration.sql     | MS SQL             |          1 |          7 |          1 |          9 |
+| /Users/yokoiryotaro/craft-beer-ec/prisma/seed.ts                                      | TypeScript         |        106 |          2 |          5 |        113 |
+| /Users/yokoiryotaro/craft-beer-ec/public/file.svg                                     | XML                |          1 |          0 |          0 |          1 |
+| /Users/yokoiryotaro/craft-beer-ec/public/globe.svg                                    | XML                |          1 |          0 |          0 |          1 |
+| /Users/yokoiryotaro/craft-beer-ec/public/next.svg                                     | XML                |          1 |          0 |          0 |          1 |
+| /Users/yokoiryotaro/craft-beer-ec/public/vercel.svg                                   | XML                |          1 |          0 |          0 |          1 |
+| /Users/yokoiryotaro/craft-beer-ec/public/window.svg                                   | XML                |          1 |          0 |          0 |          1 |
+| /Users/yokoiryotaro/craft-beer-ec/tsconfig.json                                       | JSON with Comments |         28 |          0 |          1 |         29 |
+| Total                                                                                 |                    |     11,495 |        305 |        702 |     12,502 |
++---------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../styles/checkout.module.css";
+import spinnerStyles from "../styles/spinner.module.css";
 
 type CartItem = {
   id: number;
@@ -96,8 +97,8 @@ export default function CheckoutPage() {
     <main id="maincontent">
       <h1>ご購入手続き</h1>
       <section id={styles.mainsection}>
-        <div className={styles.spinnerContainer}>
-          <div className={styles.spinner}></div>
+        <div className={spinnerStyles.spinnerContainer}>
+          <div className={spinnerStyles.spinner}></div>
           <p>読み込み中...</p>
         </div>
       </section>

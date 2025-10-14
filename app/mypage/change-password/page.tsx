@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "../../styles/password.module.css";
+import spinnerStyles from "../../styles/spinner.module.css";
 
 export default function ChangePasswordPage() {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -32,8 +33,8 @@ export default function ChangePasswordPage() {
       <main id="maincontent">
         <h1>パスワード変更</h1>
         <section id={styles.mainsection}>
-          <div className={styles.spinnerContainer}>
-            <div className={styles.spinner}></div>
+          <div className={spinnerStyles.spinnerContainer}>
+            <div className={spinnerStyles.spinner}></div>
             <p>読み込み中...</p>
           </div>
         </section>

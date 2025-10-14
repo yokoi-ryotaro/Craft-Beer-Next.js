@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "../../styles/confirm.module.css";
+import spinnerStyles from "../../styles/spinner.module.css";
 
 type CartItem = {
   id: number;
@@ -67,8 +68,8 @@ export default function ConfirmPage() {
       <main id="maincontent">
         <h1>ご注文内容確認</h1>
         <section id={styles.mainsection}>
-          <div className={styles.spinnerContainer}>
-            <div className={styles.spinner}></div>
+          <div className={spinnerStyles.spinnerContainer}>
+            <div className={spinnerStyles.spinner}></div>
             <p>読み込み中...</p>
           </div>
         </section>

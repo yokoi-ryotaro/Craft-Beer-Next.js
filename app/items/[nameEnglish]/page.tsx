@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import ItemDetail from "./ItemDetail";
 import styles from "../../styles/itemDetail.module.css";
+import spinnerStyles from "../../styles/spinner.module.css";
 
 export default function ItemDetailPage() {
   const { nameEnglish } = useParams();
@@ -25,8 +26,8 @@ export default function ItemDetailPage() {
 
   if (!item) return (
     <main id={styles.maincontent}>
-      <div className={styles.spinnerContainer}>
-        <div className={styles.spinner}></div>
+      <div className={spinnerStyles.spinnerContainer}>
+        <div className={spinnerStyles.spinner}></div>
         <p>読み込み中...</p>
       </div>
     </main>

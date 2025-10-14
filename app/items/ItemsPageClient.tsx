@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "../styles/items.module.css";
+import spinnerStyles from "../styles/spinner.module.css";
 
 type Item = {
   id: number;
@@ -217,8 +218,8 @@ export default function ItemsPage() {
 
           {/* 商品一覧 */}
           {loading ? (
-            <div className={styles.spinnerContainer}>
-              <div className={styles.spinner}></div>
+            <div className={spinnerStyles.spinnerContainer}>
+              <div className={spinnerStyles.spinner}></div>
               <p>読み込み中...</p>
             </div>
           ) : items.length === 0 ? (

@@ -7,6 +7,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "./styles/top.css";
+import spinnerStyles from "./styles/spinner.module.css";
 
 type Item = {
   id: number;
@@ -71,8 +72,8 @@ export default function HomePage() {
         </div>
         <div className="swiper-area">
           {loading ? (
-            <div className=".spinner-container">
-              <div className="spinner"></div>
+            <div className={spinnerStyles.spinnerContainer}>
+              <div className={spinnerStyles.spinner}></div>
               <p>読み込み中...</p>
             </div>
           ) : (
@@ -121,8 +122,8 @@ export default function HomePage() {
         </div>
         <div className="swiper-area">
           {loading ? (
-            <div className="flex flex-col items-center justify-center h-40">
-              <div className="spinner"></div>
+            <div className={spinnerStyles.spinnerContainer}>
+              <div className={spinnerStyles.spinner}></div>
               <p>読み込み中...</p>
             </div>
           ) : (

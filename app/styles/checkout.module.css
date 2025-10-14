@@ -88,26 +88,3 @@
 .confirmButton:hover {
 	background-color:#218838;
 }
-
-.spinnerContainer {
-  display: flex;
-  flex-direction: column;
-	margin-top: 100px;
-  /*justify-content: center; /* 縦方向中央 */
-  align-items: center;     /* 横方向中央 */
-  height: 100vh;           /* 画面全体の高さ */
-}
-
-.spinner {
-  border: 4px solid #f3f3f3; /* 薄いグレー */
-  border-top: 4px solid #3498db; /* 青色 */
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
